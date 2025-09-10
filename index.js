@@ -85,4 +85,4 @@ async function runLoop() {
 runLoop();
 
 // // Run every 10 minutes
-// setInterval(runLoop, 10 * 60 * 1000);
+setInterval(runLoop, 10 * 60 * 1000);
