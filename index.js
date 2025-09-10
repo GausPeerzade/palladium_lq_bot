@@ -14,7 +14,7 @@ const tvMngrAddr = "0xB294d1B36eedce91B28bBf6077BD61BeEB480eaE";
 const adminAddr = "0x741145aF40A46cD8B7653Be09EC59CEb9c6c45e1";
 const sortedTroveAddr = "0xD9C1Ad5e6497B3d44887eDdBc348d5781f62A101";
 const priceFeedAddr = "0xEe015C52CD8d411a0812d1fAE4696e1Cc721D711";
-const spVault = "0x0241ba49d543E9E8EfD579d7551A4a0F7Ea3265c";
+const spVault = "0x9e0AeC4b128f72A8b54B7a7FFB2665D0327174b4";
 
 const collaterals = ["0x0D2437F93Fed6EA64Ef01cCde385FB1263910C56", "0xF4586028FFdA7Eca636864F80f8a3f2589E33795", "0x9BC574a6f1170e90D80826D86a6126d59198A3Ef"];
 
@@ -60,12 +60,8 @@ async function main() {
                 const tvMngrOpsWithSigner = vault.connect(signer);
 
                 //  Execute liquidation
-                const tx = await tvMngrOpsWithSigner.liquidate(collateral, 10);
+                const tx = await tvMngrOpsWithSigner.liquidateAndHarvest(collateral, 10);
                 await tx.wait();
-
-                //  Execute harvest
-                const tx2 = await tvMngrOpsWithSigner.harvest();
-                await tx2.wait();
             } else {
             }
 
@@ -88,5 +84,5 @@ async function runLoop() {
 // Run immediately once
 runLoop();
 
-// Run every 10 minutes
-setInterval(runLoop, 10 * 60 * 1000);
+// // Run every 10 minutes
+// setInterval(runLoop, 10 * 60 * 1000);
